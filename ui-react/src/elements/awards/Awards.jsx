@@ -47,7 +47,19 @@ class TabsTwo extends Component{
                                        <div className="single-tab-content">
                                            <ul>
                                                <li>
+                                                   <a href="/service">IBM Lab Services Award IBM Practice: Put the client first</a> 2019
+                                               </li>
+                                               <li>
+                                                   <a href="/service">Eminence and Excellemce Award IBM Practice: Show personal interest</a> 2018
+                                               </li>
+                                               <li>
+                                                   <a href="/service">IBM Lab Services Award: Restlessly reinvent</a> 2017
+                                               </li>
+                                               <li>
                                                    <a href="/service">IBM Lab Services Award</a> 2017
+                                               </li>
+                                               <li>
+                                                   <a href="/service">IBM Rock Star</a> 2017
                                                </li>
                                                <li>
                                                    <a href="/service">Newbury Triathlon overall winner</a> 2009

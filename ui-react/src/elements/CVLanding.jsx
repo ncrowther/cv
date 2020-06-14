@@ -2,7 +2,7 @@ import React from 'react';
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
 import Helmet from "../component/common/Helmet";
-import TabTwo from "../elements/tab/TabTwo";
+import Awards from "../elements/awards/Awards";
 import ContactThree from "../elements/contact/ContactThree";
 import PortfolioList from "../elements/portfolio/PortfolioList";
 import SkillsList from "../elements/skills/SkillsList";
@@ -32,7 +32,7 @@ const CVLanding = () => {
                                             <p className="description">{description}</p>
                                         </div>
                                         <div className="row mt--30">
-                                            <TabTwo tabStyle="tab-style--1" />
+                                            <Awards tabStyle="tab-style--1" />
                                         </div>
                                     </div>
                                 </div>
