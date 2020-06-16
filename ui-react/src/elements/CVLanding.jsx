@@ -3,7 +3,7 @@ import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
 import Helmet from "../component/common/Helmet";
 import Awards from "../elements/awards/Awards";
-import ContactThree from "../elements/contact/ContactThree";
+import Contact from "../elements/contact/Contact";
 import PortfolioList from "../elements/portfolio/PortfolioList";
 import SkillsList from "../elements/skills/SkillsList";
 
@@ -91,7 +91,7 @@ const CVLanding = () => {
             {/* Start Contact Area */}
             <div id="contact" className="fix">
                 <div className="rn-contact-area ptb--120 bg_color--1">
-                    <ContactThree contactImages="/images/about/mugshot.jpg" contactTitle="Contact" contactUrl="https://www.linkedin.com/in/nigel-crowther-4560711/"/>
+                    <Contact contactImages="/images/about/mugshot.jpg" contactTitle="Contact" contactUrl="https://www.linkedin.com/in/nigel-crowther-4560711/"/>
                 </div>
             </div>
             {/* End Contact Area */}

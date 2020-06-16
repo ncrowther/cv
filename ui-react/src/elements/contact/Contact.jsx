@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ContactThree extends Component{
+class Contact extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -35,4 +35,4 @@ class ContactThree extends Component{
         )
     }
 }
-export default ContactThree;
+export default Contact;
