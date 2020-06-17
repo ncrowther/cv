@@ -26,19 +26,12 @@ class PortfolioDetails extends Component{
 
         return(
 
-            <React.Fragment>
-                <PageHelmet pageTitle='Portfolio Details' />
-
-                {/* Start Project Area */}
-                <div id="project" className="fix">
+          <div className="active-dark">
+              <Helmet pageTitle="Portfolio Landing" />
                     <div className="rn-contact-area ptb--120 bg_color--1">
                         <Project company={`${company}`} jobrole={`${jobrole}`} date={`${date}`} details={`${details}`} companyImage={`${image}`}/>
                     </div>
-                </div>
-                {/* End project Area */}
-
-
-            </React.Fragment>
+            </div>
         )
     }
 }
