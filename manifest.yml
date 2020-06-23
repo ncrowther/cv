@@ -1,0 +1,4 @@
+applications:
+- name: NigelCrowtherCV
+  memory: 256M
+  services:
