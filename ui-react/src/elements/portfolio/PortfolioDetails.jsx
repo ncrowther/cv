@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PageHelmet from "../../component/common/Helmet";
+import Helmet from "../../component/common/Helmet";
 import Project from "../../elements/project/Project";
 
 
