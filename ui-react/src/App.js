@@ -34,9 +34,9 @@ class App extends Component {
 
   componentDidMount() {
     console.log("componentDidMount:")
-    this.callApi()
-      .then(res =>  this.setState({ docs: res.response }))
-      .catch(err =>this.setState({ docs: err}));
+    //this.callApi()
+    //  .then(res =>  this.setState({ docs: res.response }))
+    //  .catch(err =>this.setState({ docs: err}));
   }
 
   callApi = async () => {

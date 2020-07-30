@@ -9,14 +9,14 @@ import SkillsList from "../elements/skills/SkillsList";
 
 const CVLanding = () => {
     let title = 'CV - Nigel Crowther',
-        description = 'Over twelve years designing and developing Cloud Pak for Automation systems within IBM. Experience across all business sectors with greatest focus on finance. I am a published author on DeveloperWorks and IBM Redbooks. I have presented at Think 2017 and other international conferences. ';
+        description = 'Over twelve years designing and developing business rule systems within IBM. Experience across all business sectors with greatest focus on finance. I am a published author on DeveloperWorks and IBM Redbooks. I have presented at Think 2017 and other international conferences. ';
     return (
         <div className="active-dark">
             <Helmet pageTitle="Portfolio Landing" />
 
             {/* Start About Area */}
             <div id="about" className="fix">
-                <div className="about-area ptb--120  bg_color--1">
+                <div className="about-area ptb--50  bg_color--1">
                     <div className="about-wrapper">
                         <div className="container">
                             <div className="row row--35 align-items-center">

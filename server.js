@@ -7,9 +7,9 @@ const Cloudant = require('@cloudant/cloudant')
 var username = '724c8e7f-5faa-49e1-8dc0-7a39ffd871ad-bluemix'
 var password = '4b70c44615f871a95e501f5ce871a607072d69e206ad76af5ad020aa7e205f64'
 var cloudant = Cloudant({ account: username, password: password })
-const questionsDbName = 'newsviz'
+const cvDbName = 'cvdb'
 
-var questionsDb = cloudant.use(questionsDbName)
+var cvDb = cloudant.use(cvDbName)
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -17,14 +17,43 @@ const port = process.env.PORT || 3001
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-var docs = loadQuestions(questionsDb)
-
 // API calls
-app.get('/api/load', async (req, res) => {
-  console.log('Loading...')
-  console.log('Response:' + JSON.stringify(docs))
-  res.send({ response: docs })
+app.get('/api/writeComment', async (req, res) => {
+  console.log('Writing comment...' + req.query.name + ':' + req.query.email + ':' + req.query.message)
+
+  // insert the event as a document
+  cvDb.insert({
+    comment: req.query
+  }, function (err, body, header) {
+    if (err) {
+      return console.log('[cvDb.insert] ', err.message)
+    } else {
+      console.log('Inserted comment in cv database.')
+    }
+  })
+
+  res.send({ response: 'ok' })
   // res.send({ response: 'CV - Nigel Crowther' })
+})
+
+app.get('/api/getComments', async (req, res) => {
+  console.log('Reading comments...')
+
+  cvDb.list({ include_docs: true }, function (err, result) {
+    if (err) {
+      throw err
+    }
+
+    var comments = ''
+    result.rows.forEach(function (doc) {
+      console.log(doc)
+      var comment = 'Name: ' + doc.doc.comment.name + '\nMessage:' + doc.doc.comment.message + '\n\n'
+      comments = comments + comment
+    })
+    console.log('Found %d comments', result.rows.length)
+
+    res.send({ response: comments })
+  })
 })
 
 if (process.env.NODE_ENV === 'production') {
@@ -40,19 +69,6 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', function (req, res) {
     // res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
     res.sendFile(path.join(__dirname, 'ui-react/build', 'index.html'))
-  })
-}
-
-async function loadQuestions (db) {
-  db.find({ selector: { category: 'UK News' } }, function (err, result) {
-    if (err) {
-      throw err
-    }
-    console.log('Found %d new questions', result.docs.length)
-    for (var i = 0; i < result.docs.length; i++) {
-      console.log('  Doc id: %s', result.docs[i]._id)
-    }
-    docs = result.docs
   })
 }
 
