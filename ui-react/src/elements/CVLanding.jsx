@@ -4,12 +4,13 @@ import { FiChevronUp } from "react-icons/fi";
 import Helmet from "../component/common/Helmet";
 import Awards from "../elements/awards/Awards";
 import Contact from "../elements/contact/Contact";
+import PublicationList from "../elements/publications/PublicationList";
 import PortfolioList from "../elements/portfolio/PortfolioList";
 import SkillsList from "../elements/skills/SkillsList";
 
 const CVLanding = () => {
     let title = 'CV - Nigel Crowther',
-        description = 'Over twelve years designing and developing business rule systems within IBM. Experience across all business sectors with greatest focus on finance. I am a published author on DeveloperWorks and IBM Redbooks. I have presented at Think 2017 and other international conferences. ';
+        description = 'Over twelve years designing and developing business rule systems within IBM. Experience across all business sectors with greatest focus on finance. I am a published author and have presented at Think and other international conferences. ';
     return (
         <div className="active-dark">
             <Helmet pageTitle="Portfolio Landing" />
@@ -65,6 +66,28 @@ const CVLanding = () => {
                 </div>
             </div>
             {/* End Skills Area  */}
+
+            {/* Start Publications Area  */}
+            <div id="publications" className="fix">
+                <div className="service-area creative-service-wrapper ptb--120 bg_color--5" >
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="section-title text-center service-style--3 mb--30 mb_sm--0">
+                                    <h2 className="title">Publications</h2>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row creative-service">
+                            <div className="col-lg-12">
+                                <PublicationList item="3" column="col-lg-4 col-md-6 col-sm-6 col-12 text-left" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* End Publications Area  */}
 
             {/* Start Portfolio Area */}
             <div id="portfolio" className="fix">

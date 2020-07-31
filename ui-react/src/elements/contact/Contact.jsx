@@ -1,40 +1,33 @@
 import React, { Component } from "react";
 
-class Columns extends React.Component {
-  render() {
-    return (
-      <div>
-        <td>Hello</td>
-        <td>World</td>
-      </div>
-    );
-  }
-}
-
 function MessageTable(props) {
-  if (props.messages === '') {    return null;  }
-  return (
-    <div className="messages">
-      <h4>Messages</h4>
-      <table>
-        <tr>
-          <Columns />
-        </tr>
-      </table>
-    </div>
-  );
+  if (props.messages === null) {    return null;  }
+
+  const listItems = props.messages.map((message) =>
+           message.message !== null && message.message !== '' && <li> '{message.message}' - {message.name}</li>
+      );
+
+      return(
+          <React.Fragment>
+              <ul className={`list-style--1`}>
+                  {listItems}
+              </ul>
+          </React.Fragment>
+  )
 }
 
 class Contact extends Component{
 
-  constructor(props) {
+  constructor(props){
       super(props);
-      this.state = {name: '', email: '', message: '', messages: ''};
-      this.handleNameChange = this.handleNameChange.bind(this);
-      this.handleEmailChange = this.handleEmailChange.bind(this);
-      this.handleMessageChange = this.handleMessageChange.bind(this);
+      this.state = {
+          rnName: '',
+          rnEmail: '',
+          rnSubject: '',
+          rnMessage: '',
+          rnMessages: null
+      }
       this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     readMessagesApi = async () => {
@@ -49,24 +42,12 @@ class Contact extends Component{
 
     writeMessageApi = async () => {
       console.log("Save comment:")
-      const response = await fetch('/api/writeComment/?name=' +  this.state.name + '&email=' + this.state.email  + '&message=' + this.state.message);
+      const response = await fetch('/api/writeComment/?name=' +  this.state.rnName + '&email=' + this.state.rnEmail  + '&message=' + this.state.rnMessage);
       const body = await response.json();
       if (response.status !== 200) throw Error(body.message);
 
       console.log("Response:" + body)
       return body;
-    };
-
-    handleNameChange(event) {
-       this.setState({name: event.target.value});
-    }
-
-    handleEmailChange(event) {
-       this.setState({email: event.target.value});
-    }
-
-    handleMessageChange(event) {
-       this.setState({message: event.target.value});
     }
 
     handleSubmit(event) {
@@ -75,12 +56,11 @@ class Contact extends Component{
       // alert('A name was submitted: ' + this.state.value);
 
       this.writeMessageApi(this.state)
-        .then(res =>  this.setState({message: res.response }))
-        .catch(err =>this.setState({message: err.response }));
+        .then(res =>  this.readMessagesApi()
+                  .then(res =>  this.setState({rnMessages: res.response }))
+                  .catch(err =>this.setState({rnMessages: err.response })))
+        .catch(err =>this.setState({rnMessage: err.response }));
 
-      this.readMessagesApi()
-          .then(res =>  this.setState({messages: res.response }))
-          .catch(err =>this.setState({messages: err.response }));
     }
 
     render(){
@@ -91,31 +71,58 @@ class Contact extends Component{
                         <div className="col-lg-6 order-2 order-lg-1">
                             <div className="section-title text-left mb--50">
                                 <h2 className="title">{this.props.contactTitle}</h2>
-                                <p className="Phone">Phone: <a href="tel:+44 (0)7879 613604">+44 (0)7879 613604</a> </p>
-                                <p className="Email">Email:  <a href="mailto:ncrowther@uk.ibm.com"> ncrowther@uk.ibm.com</a> </p>
-                                <p className="LinkedIn">LinkedIn: <a href={`${this.props.contactUrl}`}> {this.props.contactUrl}</a>  </p>
+                                <p className="description">I am available. Connect with me via <a href="https://www.linkedin.com/in/nigel-crowther-4560711/">LinkedIn</a> or <a href="mailto:ncrowther@uk.ibm.com">email</a>, or post a message: </p>
                             </div>
+                            <div className="form-wrapper">
+                                <form onSubmit={this.handleSubmit}>
+                                    <label htmlFor="item01">
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            id="item01"
+                                            value={this.state.rnName}
+                                            onChange={(e)=>{this.setState({rnName: e.target.value});}}
+                                            placeholder="Your Name *"
+                                        />
+                                    </label>
 
-                            <div className="section-title text-left mb--50">
-                              <form onSubmit={this.handleSubmit}>
+                                    <label htmlFor="item02">
+                                        <input
+                                            type="text"
+                                            name="email"
+                                            id="item02"
+                                            value={this.state.rnEmail}
+                                            onChange={(e)=>{this.setState({rnEmail: e.target.value});}}
+                                            placeholder="Your email *"
+                                        />
+                                    </label>
 
-                                    <h4>Your Name</h4>
-                                    <input type="text" name="name" value={this.state.name} onChange={this.handleNameChange}/>
-
-                                    <h4>Your Email</h4>
-                                    <input type="text" name="email" value={this.state.email} onChange={this.handleEmailChange}/>
-
-                                    <h4>Your Message</h4>
-                                    <textarea name="message" value={this.state.message} onChange={this.handleMessageChange} />
-
-                                    <button className="rn-button-style--2 btn-solid" type="submit" value="Send" name="submit" id="mc-embedded-subscribe">Submit</button>
-                              </form>
+                                    <label htmlFor="item03">
+                                        <input
+                                            type="text"
+                                            name="subject"
+                                            id="item03"
+                                            value={this.state.rnSubject}
+                                            onChange={(e)=>{this.setState({rnSubject: e.target.value});}}
+                                            placeholder="Write a Subject"
+                                        />
+                                    </label>
+                                    <label htmlFor="item04">
+                                        <textarea
+                                            type="text"
+                                            id="item04"
+                                            name="message"
+                                            value={this.state.rnMessage}
+                                            onChange={(e)=>{this.setState({rnMessage: e.target.value});}}
+                                            placeholder="Your Message"
+                                        />
+                                    </label>
+                                    <button className="rn-button-style--2 btn-solid" type="submit" value="submit" name="submit" id="mc-embedded-subscribe">Submit</button>
+                                </form>
                             </div>
-
-                            <MessageTable messages={this.state.messages} />
-
+                            <br/><br/>
+                            <MessageTable messages={this.state.rnMessages} />
                         </div>
-
                     </div>
                 </div>
             </div>

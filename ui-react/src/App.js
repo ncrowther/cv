@@ -5,11 +5,6 @@ import CVLanding from './elements/CVLanding';
 import PortfolioDetails from "./elements/portfolio/PortfolioDetails";
 import error404 from "./elements/error404";
 
-var posts = [
-  {_id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-  {_id: 2, title: 'Installation', content: 'You can install React from npm.'}
-];
-
 function Blog(props) {
 
   const content = props.posts.map((post) =>

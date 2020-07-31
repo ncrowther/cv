@@ -44,11 +44,10 @@ app.get('/api/getComments', async (req, res) => {
       throw err
     }
 
-    var comments = ''
+    var comments = []
     result.rows.forEach(function (doc) {
-      console.log(doc)
-      var comment = 'Name: ' + doc.doc.comment.name + '\nMessage:' + doc.doc.comment.message + '\n\n'
-      comments = comments + comment
+      console.log(doc.doc.comment)
+      comments.push(doc.doc.comment)
     })
     console.log('Found %d comments', result.rows.length)
 
