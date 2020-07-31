@@ -1,10 +1,11 @@
-
-List Style
+/*----------------------
+    List Style
+------------------------*/
 
 .list-style--1 {
     @extend %liststyle;
     li {
-        color: #ffffff;
+        color: #7e7e7e;
         font-weight: 400;
         font-size: 16px;
         line-height: inherit;
