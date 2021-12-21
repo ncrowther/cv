@@ -6,6 +6,7 @@
 # make sure ./ui-react directory is built with `npm run build`. This minified code is referred to in ./server.js
 # then in top level dir:
 # ibmcloud login --sso
+# ibmcloud target --cf
 # ibmcloud app push
 
 # **** Run locally *****

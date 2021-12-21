@@ -17,13 +17,13 @@
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
     "@cloudant/cloudant": "^4.2.4",
-    "cloudant": "^1.10.0-NOTICE"
+    "body-parser": "^1.19.0",
+    "cloudant": "^1.10.0-NOTICE",
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^6.5.1"
   },
   "repository": {
     "type": "git",
